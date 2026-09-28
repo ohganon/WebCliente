@@ -1,0 +1,82 @@
+/* Variables de color: se definen una vez y se usan en todo el archivo.
+   En la Fase 5 el modo oscuro solo tendrá que cambiar estos valores. */
+:root {
+    --color-fondo: #f0f2f5;
+    --color-texto: #222;
+    --color-zona: #ffffff;
+    --color-principal: #e63946;
+}
+
+/* Estilos generales de la página */
+body {
+    margin: 0;                                  /* quita el margen que el navegador pone por defecto */
+    font-family: "Segoe UI", Arial, sans-serif; /* si no existe la primera fuente, prueba la siguiente */
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+}
+
+/* Cabecera: título y subtítulo centrados */
+header {
+    text-align: center;
+    padding: 20px 0 10px;       /* arriba 20px, lados 0, abajo 10px */
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;          /* rem = relativo al tamaño de letra base (16px) */
+}
+
+.subtitulo {
+    margin: 5px 0 0;
+    opacity: 0.7;               /* texto algo más suave que el título */
+}
+
+/* Marcador: los tres datos en una fila */
+.marcador {
+    display: flex;              /* coloca los hijos (los <p>) uno al lado del otro */
+    justify-content: center;    /* los centra horizontalmente */
+    gap: 40px;                  /* separación entre cada dato */
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+/* Botón de jugar */
+#boton-jugar {
+    display: block;             /* necesario para poder centrarlo con margin auto */
+    margin: 0 auto;             /* 0 arriba/abajo, auto a los lados = centrado */
+    padding: 12px 40px;         /* espacio interior: 12px arriba/abajo, 40px a los lados */
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+    background-color: var(--color-principal);
+    border: none;               /* quita el borde gris por defecto */
+    border-radius: 8px;         /* esquinas redondeadas */
+    cursor: pointer;            /* cursor de "mano" al pasar por encima */
+    transition: transform 0.1s; /* anima suavemente el cambio de tamaño del :hover */
+}
+
+/* :hover se aplica mientras el ratón está encima del botón */
+#boton-jugar:hover {
+    transform: scale(1.05);     /* lo agranda un 5% */
+}
+
+/* :disabled se aplica cuando el botón está desactivado (lo usaremos durante la partida) */
+#boton-jugar:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* Zona donde aparecerán las dianas */
+#zona-juego {
+    position: relative;         /* las dianas (position: absolute) se colocarán respecto a esta caja */
+    overflow: hidden;           /* si algo se sale de la caja, no se ve */
+    width: 90%;
+    max-width: 900px;           /* en pantallas grandes no pasa de 900px */
+    height: 500px;
+    margin: 20px auto;          /* centrada horizontalmente */
+    background-color: var(--color-zona);
+    border: 3px solid var(--color-texto);
+    border-radius: 12px;
+    cursor: crosshair;          /* cursor en forma de mira */
+}

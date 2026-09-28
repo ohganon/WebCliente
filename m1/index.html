@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aim Trainer</title>
+    <link rel="stylesheet" href="styles.css">
+    <!-- defer: el script se ejecuta cuando todo el HTML ya está cargado,
+         así querySelector siempre encuentra los elementos -->
+    <script src="app.js" defer></script>
+</head>
+<body>
+
+    <header>
+        <h1>🎯 Aim Trainer</h1>
+        <p class="subtitulo">Acierta todas las dianas que puedas en 60 segundos.</p>
+    </header>
+
+    <main>
+        <!-- Los números van en <span> con id para cambiar solo el número desde JS -->
+        <section class="marcador">
+            <p>Aciertos: <span id="aciertos">0</span></p>
+            <p>Fallos: <span id="fallos">0</span></p>
+            <p>Tiempo: <span id="tiempo">60</span> s</p>
+        </section>
+
+        <button id="boton-jugar" type="button">Jugar</button>
+
+        <!-- Aquí JavaScript creará las dianas y las cruces de fallo -->
+        <div id="zona-juego"></div>
+    </main>
+
+</body>
+</html>
