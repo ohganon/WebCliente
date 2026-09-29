@@ -38,10 +38,25 @@ function crearDiana() {
     diana.style.top = `${numeroAleatorio(maxY)}px`;
 }
 
+// Crea un efecto visual temporal (la cruz o la explosión) en la posición indicada.
+// Se borra solo del DOM cuando termina su animación CSS.
+// Lo usan acertarDiana y registrarFallo, así no se repite el mismo código dos veces.
+function crearEfecto(clase, left, top) {
+    const efecto = document.createElement("span");
+    efecto.classList.add(clase);
+    efecto.style.left = left;
+    efecto.style.top = top;
+    efecto.addEventListener("animationend", () => efecto.remove());
+    zonaJuego.append(efecto);
+    return efecto;   // lo devolvemos por si quien lo llama quiere modificarlo (la cruz le pone texto)
+}
+
 // Se ejecuta cuando el usuario acierta una diana.
 function acertarDiana(diana) {
     aciertos++;
     textoAciertos.textContent = aciertos;
+    // La explosión aparece exactamente donde estaba la diana
+    crearEfecto("explosion", diana.style.left, diana.style.top);
     diana.remove();   // quita la diana acertada del DOM
     crearDiana();     // y aparece otra en otro sitio
 }
@@ -52,18 +67,9 @@ function registrarFallo(event) {
     fallos++;
     textoFallos.textContent = fallos;
 
-    const cruz = document.createElement("span");
-    cruz.classList.add("cruz");
-    cruz.textContent = "✖";
-
     // offsetX/offsetY: posición del clic medida desde la esquina de la zona de juego.
-    cruz.style.left = `${event.offsetX}px`;
-    cruz.style.top = `${event.offsetY}px`;
-
-    // Cuando termina la animación de desvanecerse (definida en el CSS), la quitamos del DOM.
-    cruz.addEventListener("animationend", () => cruz.remove());
-
-    zonaJuego.append(cruz);
+    const cruz = crearEfecto("cruz", `${event.offsetX}px`, `${event.offsetY}px`);
+    cruz.textContent = "✖";
 }
 
 // Muestra el tiempo en pantalla y lo pone en rojo en los últimos 10 segundos.

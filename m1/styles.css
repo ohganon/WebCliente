@@ -5,6 +5,7 @@
     --color-texto: #222;
     --color-zona: #ffffff;
     --color-principal: #e63946;
+    --tamano-diana: 60px;       /* lo usan la diana y su explosión, así siempre coinciden */
 }
 
 /* Estilos generales de la página */
@@ -84,8 +85,8 @@ header h1 {
 /* Diana: la crea JavaScript y le da los valores de top y left */
 .diana {
     position: absolute;         /* se coloca con top/left respecto a #zona-juego */
-    width: 60px;
-    height: 60px;
+    width: var(--tamano-diana);
+    height: var(--tamano-diana);
     border-radius: 50%;         /* 50% convierte el cuadrado en un círculo */
     /* Anillos rojos y blancos: cada color ocupa una franja del radio (de 0% a 100%) */
     background: radial-gradient(
@@ -109,6 +110,24 @@ header h1 {
     pointer-events: none;               /* los clics "atraviesan" la cruz y llegan a la zona */
     user-select: none;                  /* evita que se seleccione como texto al hacer clic rápido */
     animation: desvanecer 0.6s ease-out forwards;
+}
+
+/* Explosión que aparece donde estaba la diana acertada */
+.explosion {
+    position: absolute;
+    width: var(--tamano-diana);
+    height: var(--tamano-diana);
+    border-radius: 50%;
+    /* Núcleo amarillo claro, anillo naranja, borde rojo y fuera transparente */
+    background: radial-gradient(
+        circle,
+        #fff3b0 0 30%,
+        #ffb703 30% 55%,
+        var(--color-principal) 55% 70%,
+        transparent 70%
+    );
+    pointer-events: none;       /* igual que la cruz: no debe "robar" clics */
+    animation: explotar 0.35s ease-out forwards;
 }
 
 /* Clase que añade JavaScript al tiempo en los últimos 10 segundos */
@@ -148,5 +167,17 @@ header h1 {
     to {
         opacity: 0;
         transform: translate(-50%, -50%) scale(1.5);
+    }
+}
+
+/* Animación: la explosión crece hasta el doble de tamaño mientras desaparece */
+@keyframes explotar {
+    from {
+        opacity: 1;
+        transform: scale(0.6);
+    }
+    to {
+        opacity: 0;
+        transform: scale(2);
     }
 }
