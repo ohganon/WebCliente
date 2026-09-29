@@ -111,6 +111,34 @@ header h1 {
     animation: desvanecer 0.6s ease-out forwards;
 }
 
+/* Clase que añade JavaScript al tiempo en los últimos 10 segundos */
+.tiempo-agotandose {
+    color: var(--color-principal);
+}
+
+/* Panel de resultado final: ocupa toda la zona de juego y centra su contenido */
+.resultado {
+    position: absolute;
+    inset: 0;                   /* atajo de top: 0; right: 0; bottom: 0; left: 0 */
+    display: flex;
+    flex-direction: column;     /* los hijos uno debajo de otro */
+    justify-content: center;    /* centrados en vertical */
+    align-items: center;        /* centrados en horizontal */
+    text-align: center;
+    cursor: default;            /* aquí ya no se apunta: cursor normal */
+}
+
+.resultado h2 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+.rango {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: var(--color-principal);
+}
+
 /* Animación: la cruz empieza visible y se va haciendo transparente y más grande */
 @keyframes desvanecer {
     from {
