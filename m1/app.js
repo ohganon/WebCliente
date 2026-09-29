@@ -172,5 +172,18 @@ function manejarClicZona(event) {
     }
 }
 
+// Tecla secreta: la "n" (de nocturno) activa y desactiva el modo oscuro.
+function manejarTecla(event) {
+    // event.repeat es true si la tecla se mantiene pulsada; así no parpadea
+    if (event.repeat) {
+        return;
+    }
+    // toLowerCase para que funcione igual con "n" y con "N" (bloq. mayús.)
+    if (event.key.toLowerCase() === "n") {
+        document.body.classList.toggle("modo-oscuro");
+    }
+}
+
 botonJugar.addEventListener("click", iniciarPartida);
 zonaJuego.addEventListener("click", manejarClicZona);
+document.addEventListener("keydown", manejarTecla);

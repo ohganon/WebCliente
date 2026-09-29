@@ -8,12 +8,21 @@
     --tamano-diana: 60px;       /* lo usan la diana y su explosión, así siempre coinciden */
 }
 
+/* Modo oscuro: JavaScript añade o quita esta clase en <body> con la tecla "n".
+   Solo redefine las variables; todas las reglas que usan var(...) cambian solas. */
+body.modo-oscuro {
+    --color-fondo: #121212;
+    --color-texto: #eeeeee;
+    --color-zona: #1e1e1e;
+}
+
 /* Estilos generales de la página */
 body {
     margin: 0;                                  /* quita el margen que el navegador pone por defecto */
     font-family: "Segoe UI", Arial, sans-serif; /* si no existe la primera fuente, prueba la siguiente */
     background-color: var(--color-fondo);
     color: var(--color-texto);
+    transition: background-color 0.3s, color 0.3s;   /* cambio de tema suave, no de golpe */
 }
 
 /* Cabecera: título y subtítulo centrados */
@@ -80,6 +89,7 @@ header h1 {
     border: 3px solid var(--color-texto);
     border-radius: 12px;
     cursor: crosshair;          /* cursor en forma de mira */
+    transition: background-color 0.3s, border-color 0.3s;
 }
 
 /* Diana: la crea JavaScript y le da los valores de top y left */
