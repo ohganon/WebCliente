@@ -80,3 +80,45 @@ header h1 {
     border-radius: 12px;
     cursor: crosshair;          /* cursor en forma de mira */
 }
+
+/* Diana: la crea JavaScript y le da los valores de top y left */
+.diana {
+    position: absolute;         /* se coloca con top/left respecto a #zona-juego */
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;         /* 50% convierte el cuadrado en un círculo */
+    /* Anillos rojos y blancos: cada color ocupa una franja del radio (de 0% a 100%) */
+    background: radial-gradient(
+        circle,
+        var(--color-principal) 0 20%,
+        white 20% 40%,
+        var(--color-principal) 40% 60%,
+        white 60% 80%,
+        var(--color-principal) 80% 100%
+    );
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);   /* sombra suave para que "flote" */
+}
+
+/* Cruz que marca un fallo en el punto donde se hizo clic */
+.cruz {
+    position: absolute;
+    transform: translate(-50%, -50%);   /* centra la cruz justo en el punto del clic */
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--color-texto);
+    pointer-events: none;               /* los clics "atraviesan" la cruz y llegan a la zona */
+    user-select: none;                  /* evita que se seleccione como texto al hacer clic rápido */
+    animation: desvanecer 0.6s ease-out forwards;
+}
+
+/* Animación: la cruz empieza visible y se va haciendo transparente y más grande */
+@keyframes desvanecer {
+    from {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(1.5);
+    }
+}
